@@ -19,7 +19,8 @@ export async function search({ pricemin, pricemax, traits }) {
     return new Promise((resolve) => {
         async function findNFTs() {
             const query = {
-                search: '15509d4cb60f066ca4c7e982d764d6ceb4324cb33776d1711da1beee',
+                search: '',
+                project: 'BabyAlienClub',
                 sort: 'date',
                 order: 'desc',
                 pricemin,
@@ -48,7 +49,6 @@ export async function search({ pricemin, pricemax, traits }) {
             assets = [...assets, ...data.assets];
             if (data.assets.length < 1) {
                 console.log('done', assets.length);
-                console.log(assets);
                 let valid = assets.filter((x) => x.sold === false)
 
                 if (traits) {
