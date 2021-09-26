@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find my Baby</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@polymer/paper-checkbox@next/paper-checkbox.js?module" type="module" ></script>
+    <script src="https://unpkg.com/@polymer/paper-input@3.0.0-pre.20/paper-input.js?module" type="module" ></script>
+    <script src="https://unpkg.com/wc-spinners@1.1.1/dist/wc-spinners.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <main>
+        <div id="main-card" class="mdc-card">
+            <h1>Find my Baby</h1>
+            <a href="https://babyalienclub.com/" target="_blank">Baby Alien Club</a>
+        </div>
+        <section>
+            <div id="pricing">
+                <label>
+                    Min Price:
+                    <input id="minprice" type="number" placeholder="0" value="0"></input>
+                </label>
+                <br />
+                <label>
+                    Max Price:
+                    <input id="maxprice" type="number" placeholder="100" value="100"></input>
+                </label>
+            </div>
+            <hr />
+            <label>Traits</label>
+            <br />
+            <div id="traits">
+                <hr />
+                <label>Face</label>
+                <div id="face"></div>
+                <hr />
+                <label>Accessory</label>
+                <div id="accessory"></div>
+                <hr />
+                <label>Hat</label>
+                <div id="hat"></div>
+                <hr />
+                <label>Mouth</label>
+                <div id="mouth"></div>
+                <hr />
+                <label>Background</label>
+                <div id="background"></div>
+                <hr />
+                <label>Body</label>
+                <div id="body"></div>
+                <hr />
+                <label>eyes</label>
+                <div id="eyes"></div>
+                <hr />
+                <label>Clothes</label>
+                <div id="clothes"></div>
+            </div>
+            <hr />
+            <button id="search">Search</button>
+
+            <div id="waiting">
+
+            </div>
+
+            <div id="results"></div>
+
+            <hr />
+            <label>ada tips appreciated</label>
+            <label class="tip-address"></label>
+            
+        </section>
+    </main>
+    <script type="module" src="./index.js"></script>
+</body>
+
+</html>

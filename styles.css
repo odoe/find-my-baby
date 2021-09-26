@@ -1,0 +1,169 @@
+:root {
+  --light-theme-text-color: #fff;
+  --spinner__color: #fff;
+}
+
+atom-spinner {
+  --atom-spinner__color: #fff;
+  --atom-spinner__duration: 1s;
+  --atom-spinner__size: 60px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Black Ops One', cursive;
+  font-size: 16px;
+  line-height: 1.8;
+  background-color: #000f21;
+  color: #fff;
+}
+
+a {
+  color: #fff;
+}
+
+a:visited {
+  color: #fff;
+}
+
+#search {
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  border: solid #fff 2px;
+  background: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#search:hover {
+  border: solid #fff 4px;
+  background: none;
+  text-decoration: none;
+}
+
+main {
+  padding: 16px;
+  text-align: center;
+}
+#main-card {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 10px;
+  display: block;
+}
+section {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 60px 0;
+}
+button {
+  margin: 8px;
+}
+input {
+  width: 200px;
+  font-family: inherit;
+}
+
+paper-checkbox {
+  margin-right: 1rem;
+}
+
+#waiting {
+  display: flex;
+  justify-content: center;
+}
+
+trinity-rings-spinner {
+  color: #fff;
+}
+
+.card {
+  border: 1px solid #fff;
+  margin-bottom: 1rem;
+  font-size: small;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-content-img {
+  display: flex;
+  justify-content: center;
+}
+
+.details {
+  width: 100%;
+}
+
+.thumbnail {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  font-size: small;
+}
+
+.thumbnail-img {
+  width: 100%;
+  height: 100%;
+}
+
+.nft-name {
+  position: absolute;
+  bottom: 0;
+  left: 1rem;
+  margin: 0;
+}
+
+.font-white {
+  color: #fff;
+  text-shadow: 2px 2px #000;
+}
+
+.font-normal {
+  color: #000;
+  text-shadow: 2px 2px #fff;
+}
+
+.tip-address {
+  font-size: x-small;
+  overflow-wrap: break-word;
+}
+
+.rarities {
+  max-width: 200px;
+  text-align: left;
+}
+
+.rare {
+  color: #fff;
+  background-color: #7369fe;
+}
+
+.legendary {
+  color: #fff;
+  background-color: #e2854c;
+}
+
+.epic {
+  color: #fff;
+  background-color: #1c69ad;
+}
+
+.accessories {
+  color: #fff;
+  background-color: #66ff00;
+}
+
+@media screen
+and (min-device-width: 200px)
+and (max-device-width: 800px)
+{
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+}
