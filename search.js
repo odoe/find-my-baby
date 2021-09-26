@@ -17,7 +17,9 @@ const cnftUrl = 'https://api.cnft.io/market/listings';
 
 export async function search({ pricemin, pricemax, traits }) {
     return new Promise((resolve) => {
-        async function findNFTs() {
+        let pass = 0;
+
+        async function findAliens(queryPage) {
             const query = {
                 search: '',
                 project: 'BabyAlienClub',
@@ -25,7 +27,7 @@ export async function search({ pricemin, pricemax, traits }) {
                 order: 'desc',
                 pricemin,
                 pricemax,
-                page,
+                page: queryPage,
                 verified: true
             };
             
@@ -45,45 +47,55 @@ export async function search({ pricemin, pricemax, traits }) {
                 body: formBody
             });
             const data = await response.json();
-            console.log('page number', page);
+            return data;
+        }
+
+        async function findNFTs() {
+            const data = await findAliens(page);
             assets = [...assets, ...data.assets];
-            if (data.assets.length < 1) {
-                console.log('done', assets.length);
-                let valid = assets.filter((x) => x.sold === false)
-
-                if (traits) {
-                    valid = valid.filter((x) => {
-                        return x.metadata.tags.some((a) => {
-                            let isValid = false;
-                            let noTraits = true;
-                            for (let t in traits) {
-                                if (traits[t].length) {
-                                    noTraits = false;
-                                    isValid = traits[t].includes(a[t]);
-                                }
-                            }
-                            return isValid || noTraits;
-                        });
-                    })
+            if (pass === 0 && data.found > 25) {
+                pass = 1;
+                const totalPages = Math.ceil(data.found/25) - 1;
+                assets = [...assets, ...data.assets];
+                let promises = [];
+                for (let i = 0; i <= totalPages; i++) {
+                    page = page + 1;
+                    promises.push(findAliens(page));
                 }
-
-                const results =
-                    valid.sort((a, b) => a.price < b.price ? -1 : 1).map((x) => resultFactory(x, traits))
-                page = 1;
-                assets = [];
-                resolve(results);
-        
-            } else {
-                page = page + 1;
-                findNFTs(traits)
+                const results = await Promise.all(promises);
+                assets = results.reduce((a, b) => {
+                    return [...a, ...b.assets];
+                }, assets);
             }
+            let valid = assets.filter((x) => x.sold === false);
+            if (traits) {
+                valid = valid.filter((x) => {
+                    return x.metadata.tags.some((a) => {
+                        let isValid = false;
+                        let noTraits = true;
+                        for (let t in traits) {
+                            if (traits[t].length) {
+                                noTraits = false;
+                                isValid = traits[t].includes(a[t]);
+                            }
+                        }
+                        return isValid || noTraits;
+                    });
+                })
+            }
+
+            const results =
+                valid.sort((a, b) => a.price < b.price ? -1 : 1).map((x) => resultFactory(x, traits))
+            page = 1;
+            assets = [];
+            resolve(results);
         }
 
         findNFTs();
     });
 }
 
-function resultFactory(result, traits) {
+function resultFactory(result) {
     return {
         id: result.id,
         price: result.price,
